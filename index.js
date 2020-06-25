@@ -11,7 +11,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"))); // check how this works
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -20,7 +20,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/wiki", require("./routes/wiki"));
-app.use("/user", require("./routes/user"));
+app.use("/users", require("./routes/user"));
 
 db.authenticate().then(() => {
   console.log("connected to the database");

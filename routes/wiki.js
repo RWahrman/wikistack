@@ -20,7 +20,6 @@ router.post("/", async (req, res, next) => {
       where: { name: req.body.author, email: req.body.email },
     });
     page.setAuthor(user);
-    console.log(page, user);
     res.redirect(`/wiki/${page.slug}`);
   } catch (error) {
     next(error);
@@ -31,9 +30,9 @@ router.get("/add", (req, res, next) => {
   res.send(addPage());
 });
 
-router.get("/query", (req, res, next) => {
-  res.send(req.query.array.split(","));
-});
+// router.get("/query", (req, res, next) => {
+//   res.send(req.query.array.split(","));
+// });
 
 router.get("/:slug", async (req, res, next) => {
   try {
@@ -42,11 +41,7 @@ router.get("/:slug", async (req, res, next) => {
         slug: req.params.slug,
       },
     });
-    const author = await User.findOne({
-      where: {
-        id: page.authorId,
-      },
-    });
+    const author = await page.getAuthor();
     res.send(wikiPage(page, author));
   } catch (error) {
     next(error);
