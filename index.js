@@ -22,6 +22,10 @@ app.get("/", (req, res, next) => {
 app.use("/wiki", require("./routes/wiki"));
 app.use("/users", require("./routes/user"));
 
+app.get("*", (req, res, next) => {
+  res.status(404).send("Not Found");
+});
+
 db.authenticate().then(() => {
   console.log("connected to the database");
 });
