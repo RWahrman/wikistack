@@ -47,6 +47,14 @@ module.exports = () =>
         </div>
       </div>
 
+      <!-- <div>PLACEHOLDER FOR TAGS FIELD</div> -->
+      <div class="form-group">
+        <label for="tags" class="col-sm-2 control-label">Tags</label>
+        <div class="col-sm-10">
+          <input id="tags" name="tags" type="textarea" class="form-control" />
+        </div>
+      </div>
+
       <!-- <div>PLACEHOLDER FOR PAGE STATUS INPUT FIELD</div> -->
       <div class="form-group">
         <label for="content" class="col-sm-2 control-label">Page Status</label>

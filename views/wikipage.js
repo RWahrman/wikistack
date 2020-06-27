@@ -9,6 +9,12 @@ module.exports = (page, author) =>
     </h3>
     <h4>by <a href="PLACEHOLDER-AUTHOR-URL">${author.name}</a></h4>
     <hr />
+    <div class="page-tags">
+      <ul>
+        ${page.tags.map((tag) => `<li>${tag}</li>`)}
+      </ul>
+    </div>
+    <hr />
     <div class="page-body">${page.content}</div>
     <hr />
 

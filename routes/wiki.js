@@ -33,6 +33,15 @@ router.get("/add", (req, res, next) => {
 // router.get("/query", (req, res, next) => {
 //   res.send(req.query.array.split(","));
 // });
+router.get("/search", async (req, res, next) => {
+  try {
+    console.log(req.query);
+    const pages = await Page.findByTag(req.query.search);
+    res.send(main(pages));
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.get("/:slug", async (req, res, next) => {
   try {
