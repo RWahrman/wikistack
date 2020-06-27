@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
-const main = require("./views/main");
-const { db, Page, User } = require("./models");
+const { error } = require("./views/");
+const { db } = require("./models");
 
 app.use(morgan("dev"));
 
@@ -24,6 +24,10 @@ app.use("/users", require("./routes/user"));
 
 app.get("*", (req, res, next) => {
   res.status(404).send("Not Found");
+});
+
+app.use((err, req, res, next) => {
+  res.send(error(err.message, err));
 });
 
 db.authenticate().then(() => {
