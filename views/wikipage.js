@@ -11,7 +11,9 @@ module.exports = (page, author) =>
     <hr />
     <div class="page-tags">
       <ul>
-        ${page.tags.map((tag) => `<li>${tag}</li>`)}
+        ${page.tags.map(
+          (tag) => `<li><a href="/wiki/search?search=${tag}">${tag}</a></li>`
+        )}
       </ul>
     </div>
     <hr />
