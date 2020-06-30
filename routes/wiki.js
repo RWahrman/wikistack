@@ -61,6 +61,26 @@ router.get("/:slug", async (req, res, next) => {
   }
 });
 
+router.get("/:slug/similar", async (req, res, next) => {
+  try {
+    const page = await Page.findOne({
+      where: {
+        slug: req.params.slug,
+      },
+    });
+
+    if (!page) {
+      res.status(404).send(`<h4 style="color: blue">Not Found!!!</h4>`);
+    }
+    const similar = await page.findSimilar(page.tags);
+    console.log(similar, typeof similar);
+
+    res.send(main(similar));
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/:slug/edit", async (req, res, next) => {
   try {
     const page = await Page.findOne({

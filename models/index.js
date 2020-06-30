@@ -51,6 +51,10 @@ Page.findByTag = function (tag) {
   });
 };
 
+Page.prototype.findSimilar = function (tags) {
+  return Page.findAll({ where: { tags: { [Op.overlap]: [...tags] } } });
+};
+
 const User = db.define("user", {
   name: {
     type: Sequelize.STRING,
